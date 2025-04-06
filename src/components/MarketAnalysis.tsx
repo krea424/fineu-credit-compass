@@ -4,12 +4,13 @@ import Chart from './Chart';
 import { Target, Users, TrendingUp, BarChart3 } from 'lucide-react';
 
 const MarketAnalysis = () => {
+  // Sort market share data from highest to lowest for horizontal bar chart
   const marketShareData = [
     { name: 'Banche Tradizionali', value: 68 },
-    { name: 'Carte Co-branded', value: 12 },
     { name: 'Fintech', value: 15 },
+    { name: 'Carte Co-branded', value: 12 },
     { name: 'Altri', value: 5 }
-  ];
+  ].sort((a, b) => b.value - a.value);
 
   const marketTrendsData = [
     { year: '2022', 'Pagamenti Digitali': 80, 'Contante': 20 },
@@ -122,11 +123,14 @@ const MarketAnalysis = () => {
             <div className="highlight-box">
               <h4 className="font-medium">Quote di Mercato per Emittente</h4>
               <Chart 
-                type="pie"
+                type="horizontalBar"
                 data={marketShareData}
-                height={200}
-                pieColors={['#003366', '#0076CE', '#D4AF37', '#88CCEE']}
+                height={250}
+                barColors={['#003366', '#D4AF37', '#0076CE', '#88CCEE']}
               />
+              <div className="text-xs text-gray-500 mt-2 text-center">
+                Fonte: Osservatorio Fintech & Insurtech - Politecnico di Milano
+              </div>
             </div>
             
             <div className="highlight-box">
