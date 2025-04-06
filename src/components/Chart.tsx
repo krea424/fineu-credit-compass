@@ -1,5 +1,5 @@
 
-import React from 'react';
+import * as React from 'react';
 import { 
   BarChart, Bar, LineChart, Line, PieChart, Pie, 
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, 
