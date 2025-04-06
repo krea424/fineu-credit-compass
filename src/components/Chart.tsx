@@ -6,7 +6,7 @@ import {
   ResponsiveContainer, Cell
 } from 'recharts';
 
-type ChartType = 'bar' | 'line' | 'pie';
+type ChartType = 'bar' | 'line' | 'pie' | 'horizontalBar';
 
 interface ChartProps {
   type: ChartType;
@@ -17,18 +17,20 @@ interface ChartProps {
   bars?: {dataKey: string, color: string}[];
   pieDataKey?: string;
   pieColors?: string[];
+  barColors?: string[];
   height?: number;
 }
 
 const ChartComponent: React.FC<ChartProps> = ({
   type,
   data,
-  dataKey,
+  dataKey = "value",
   xAxisKey = "name",
   lines,
   bars,
   pieDataKey = "value",
   pieColors = ['#0076CE', '#003366', '#D4AF37', '#88CCEE', '#CC6677'],
+  barColors = ['#0076CE', '#003366', '#D4AF37', '#88CCEE', '#CC6677'],
   height = 300
 }) => {
   if (type === 'bar') {
@@ -62,6 +64,46 @@ const ChartComponent: React.FC<ChartProps> = ({
           ) : (
             <Bar dataKey={dataKey} fill="#0076CE" radius={[4, 4, 0, 0]} />
           )}
+        </BarChart>
+      </ResponsiveContainer>
+    );
+  }
+
+  if (type === 'horizontalBar') {
+    return (
+      <ResponsiveContainer width="100%" height={height}>
+        <BarChart
+          data={data}
+          layout="vertical"
+          margin={{ top: 5, right: 30, left: 80, bottom: 5 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" horizontal={true} vertical={false} />
+          <XAxis type="number" tick={{ fontSize: 12 }} />
+          <YAxis 
+            dataKey={xAxisKey} 
+            type="category" 
+            tick={{ fontSize: 12 }} 
+            width={80}
+          />
+          <Tooltip 
+            contentStyle={{ 
+              backgroundColor: 'white', 
+              border: '1px solid #f0f0f0',
+              borderRadius: '4px',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
+            }} 
+          />
+          <Legend />
+          <Bar 
+            dataKey={dataKey} 
+            fill="#0076CE" 
+            radius={[0, 4, 4, 0]}
+            label={{ position: 'right', formatter: (value: number) => `${value}%` }}
+          >
+            {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={barColors[index % barColors.length]} />
+            ))}
+          </Bar>
         </BarChart>
       </ResponsiveContainer>
     );

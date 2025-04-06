@@ -4,13 +4,14 @@ import { CreditCard, Check, Award, Shield, Zap } from 'lucide-react';
 import Chart from './Chart';
 
 const ProductFeatures = () => {
+  // Sorting customer drive data from highest to lowest value
   const customerDriveData = [
     { name: 'Accessibilità', value: 32 },
     { name: 'Assenza di costi', value: 27 },
     { name: 'Prestigio brand', value: 18 },
     { name: 'Sicurezza', value: 15 },
     { name: 'Altri', value: 8 }
-  ];
+  ].sort((a, b) => b.value - a.value);
   
   const productRatingData = [
     { feature: 'Accessibilità', rating: 5 },
@@ -131,10 +132,10 @@ const ProductFeatures = () => {
             <div className="highlight-box">
               <h4 className="font-medium">Fattori chiave per i clienti</h4>
               <Chart 
-                type="pie"
+                type="horizontalBar"
                 data={customerDriveData}
-                height={200}
-                pieColors={['#0076CE', '#D4AF37', '#003366', '#88CCEE', '#CC6677']}
+                height={250}
+                barColors={['#0076CE', '#D4AF37', '#003366', '#88CCEE', '#CC6677']}
               />
               <div className="text-xs text-gray-500 mt-2 text-center">
                 Fonte: Ricerca di mercato su preferenze clienti carte di credito Italia
