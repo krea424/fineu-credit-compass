@@ -1,27 +1,31 @@
 
-import React from 'react';
+import * as React from 'react';
 import Chart from './Chart';
 import { FileText, TrendingUp, Target, Clock, DollarSign, AlertTriangle } from 'lucide-react';
 
 const BusinessPlan = () => {
+  // Calcolo corretto dei costi basati sul costo per carta di €200
+  // Anno 1: 900 carte attive medie × €200 = €180.000
+  // Anno 2: 1.283 carte attive medie × €200 = €256.600
+  // Anno 3: 1.990 carte attive medie × €200 = €398.000
   const financialProjectionData = [
     { 
       year: 'Anno 1', 
       'Ricavi': 99900, 
-      'Costi': 80000,
-      'Profitto': 19900
+      'Costi': 180000,
+      'Profitto': -80100
     },
     { 
       year: 'Anno 2', 
       'Ricavi': 134865, 
-      'Costi': 92500,
-      'Profitto': 42365
+      'Costi': 256600,
+      'Profitto': -121735
     },
     { 
       year: 'Anno 3', 
       'Ricavi': 164580, 
-      'Costi': 105000,
-      'Profitto': 59580
+      'Costi': 398000,
+      'Profitto': -233420
     },
   ];
   
@@ -71,8 +75,8 @@ const BusinessPlan = () => {
                   <span className="font-medium">€399.345</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Profitto operativo:</span>
-                  <span className="font-medium">€121.845</span>
+                  <span>Risultato operativo:</span>
+                  <span className="font-medium text-red-600">-€435.255</span>
                 </div>
               </div>
             </div>
@@ -86,7 +90,7 @@ const BusinessPlan = () => {
                 </div>
                 <div className="flex justify-between">
                   <span>ROI stimato:</span>
-                  <span className="font-medium">43,8%</span>
+                  <span className="font-medium text-red-600">Negativo</span>
                 </div>
               </div>
             </div>
@@ -119,7 +123,7 @@ const BusinessPlan = () => {
                   <th>Anno</th>
                   <th>Ricavi</th>
                   <th>Costi</th>
-                  <th>Profitto</th>
+                  <th>Risultato</th>
                   <th>Margine</th>
                 </tr>
               </thead>
@@ -127,30 +131,30 @@ const BusinessPlan = () => {
                 <tr>
                   <td>Anno 1</td>
                   <td>€99.900</td>
-                  <td>€80.000</td>
-                  <td>€19.900</td>
-                  <td>19,9%</td>
+                  <td>€180.000</td>
+                  <td className="text-red-600">-€80.100</td>
+                  <td className="text-red-600">-80,2%</td>
                 </tr>
                 <tr>
                   <td>Anno 2</td>
                   <td>€134.865</td>
-                  <td>€92.500</td>
-                  <td>€42.365</td>
-                  <td>31,4%</td>
+                  <td>€256.600</td>
+                  <td className="text-red-600">-€121.735</td>
+                  <td className="text-red-600">-90,3%</td>
                 </tr>
                 <tr>
                   <td>Anno 3</td>
                   <td>€164.580</td>
-                  <td>€105.000</td>
-                  <td>€59.580</td>
-                  <td>36,2%</td>
+                  <td>€398.000</td>
+                  <td className="text-red-600">-€233.420</td>
+                  <td className="text-red-600">-141,8%</td>
                 </tr>
                 <tr className="bg-fineu-blue/10">
                   <td><strong>Totale</strong></td>
                   <td><strong>€399.345</strong></td>
-                  <td><strong>€277.500</strong></td>
-                  <td><strong>€121.845</strong></td>
-                  <td><strong>30,5%</strong></td>
+                  <td><strong>€834.600</strong></td>
+                  <td className="text-red-600"><strong>-€435.255</strong></td>
+                  <td className="text-red-600"><strong>-109,0%</strong></td>
                 </tr>
               </tbody>
             </table>
@@ -194,16 +198,16 @@ const BusinessPlan = () => {
                   <span className="font-medium">€35.000</span>
                 </div>
                 <div className="flex justify-between items-center border-b pb-2">
-                  <span>Profitto operativo (3 anni)</span>
-                  <span className="font-medium">€121.845</span>
+                  <span>Risultato operativo (3 anni)</span>
+                  <span className="font-medium text-red-600">-€435.255</span>
                 </div>
                 <div className="flex justify-between items-center border-b pb-2">
                   <span>Rapporto Ritorno/Investimento</span>
-                  <span className="font-medium">3,48x</span>
+                  <span className="font-medium text-red-600">Negativo</span>
                 </div>
                 <div className="flex justify-between items-center pt-1">
                   <span className="font-bold">ROI percentuale</span>
-                  <span className="font-bold">248%</span>
+                  <span className="font-bold text-red-600">Negativo</span>
                 </div>
               </div>
             </div>
@@ -332,7 +336,7 @@ const BusinessPlan = () => {
                   <tr>
                     <th>Scenario</th>
                     <th>Var. %</th>
-                    <th>Profitto</th>
+                    <th>Risultato</th>
                     <th>Impatto</th>
                   </tr>
                 </thead>
@@ -340,26 +344,26 @@ const BusinessPlan = () => {
                   <tr className="bg-fineu-blue/5">
                     <td><strong>Base</strong></td>
                     <td>-</td>
-                    <td>€121.845</td>
+                    <td className="text-red-600">-€435.255</td>
                     <td>-</td>
                   </tr>
                   <tr>
-                    <td>Tasso attivazione -10%</td>
-                    <td>-10%</td>
-                    <td>€108.661</td>
-                    <td>-10,8%</td>
+                    <td>Riduzione costi -20%</td>
+                    <td>-20%</td>
+                    <td className="text-red-600">-€268.335</td>
+                    <td>+38,3%</td>
                   </tr>
                   <tr>
-                    <td>Transato medio -15%</td>
-                    <td>-15%</td>
-                    <td>€112.393</td>
-                    <td>-7,8%</td>
+                    <td>Aumento fee attivazione +50%</td>
+                    <td>+50%</td>
+                    <td className="text-red-600">-€313.755</td>
+                    <td>+27,9%</td>
                   </tr>
                   <tr>
-                    <td>Costi acquisizione +20%</td>
-                    <td>+20%</td>
-                    <td>€103.845</td>
-                    <td>-14,8%</td>
+                    <td>Transato medio +100%</td>
+                    <td>+100%</td>
+                    <td className="text-red-600">-€278.910</td>
+                    <td>+35,9%</td>
                   </tr>
                 </tbody>
               </table>
